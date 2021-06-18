@@ -12,7 +12,7 @@ jobs:
         with:
           packerVersion: '1.7.3'
           packerArgs: 'build consul-ami.pkr.hcl'
-          workDir: '../../packer/consul/'
+          workDir: 'packer/consul'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
