@@ -13,12 +13,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      # fix backwards incompatibilities in template
-      - name: Fix Template
-        uses: hashicorp/packer-github-actions@master
-        with:
-          command: fix
-          target: packer/consul/consul-ami.pkr.hcl
+      # # fix backwards incompatibilities in template
+      # - name: Fix Template
+      #   uses: hashicorp/packer-github-actions@master
+      #   with:
+      #     command: fix
+      #     target: packer/consul/consul-ami.pkr.hcl
 
       # validate templates
       - name: Validate Template
