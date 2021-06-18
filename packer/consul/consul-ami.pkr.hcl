@@ -1,4 +1,3 @@
-# folder/sources.pkr.hcl
 source "amazon-ebs" "amzn2-arm64" {
   ami_name = "consul-server-arm64-{{timestamp}}"
   region = var.region
