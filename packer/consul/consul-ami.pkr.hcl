@@ -1,17 +1,31 @@
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "instance_type" {
+  default = {
+    "arm64" : "t4g.micro",
+    "amd64" : "t3.micro"
+  }
+}
+
+# "timestamp" template function replacement
+locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
+
 source "amazon-ebs" "amzn2-arm64" {
-  ami_name = "consul-server-arm64-{{timestamp}}"
-  region = var.region
+  ami_name      = "consul-server-arm64-{{ timestamp }}"
+  region        = var.region
   instance_type = var.instance_type["arm64"]
-  ami_groups = ["all"]
+  ami_groups    = ["all"]
 
   source_ami_filter {
     filters = {
       virtualization-type = "hvm"
-      name =  "amzn2-ami-hvm*"
-      root-device-type = "ebs"
-      architecture = "arm64"
+      name                = "amzn2-ami-hvm*"
+      root-device-type    = "ebs"
+      architecture        = "arm64"
     }
-    owners = ["amazon"]
+    owners      = ["amazon"]
     most_recent = true
   }
 
@@ -20,19 +34,20 @@ source "amazon-ebs" "amzn2-arm64" {
 }
 
 source "amazon-ebs" "amzn2-amd64" {
-  ami_name = "consul-server-amd64-{{timestamp}}"
-  region = var.region
+  ami_name      = "consul-server-amd64-{{ timestamp }}"
+  region        = var.region
   instance_type = var.instance_type["amd64"]
-  ami_groups = ["all"]
+  ami_groups    = ["all"]
 
+  
   source_ami_filter {
     filters = {
       virtualization-type = "hvm"
-      name =  "amzn2-ami-hvm*"
-      root-device-type = "ebs"
-      architecture = "x86_64"
+      name                = "amzn2-ami-hvm*"
+      root-device-type    = "ebs"
+      architecture        = "x86_64"
     }
-    owners = ["amazon"]
+    owners      = ["amazon"]
     most_recent = true
   }
 
@@ -50,13 +65,13 @@ build {
   ]
 
   provisioner "file" {
-    source = "files/"
+    source      = "files/"
     destination = "/tmp"
   }
 
   provisioner "shell" {
     execute_command = "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
-    script = "scripts/install_consul.sh"
+    script          = "scripts/install_consul.sh"
   }
 
   provisioner "shell-local" {
