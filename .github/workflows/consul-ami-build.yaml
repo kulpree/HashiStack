@@ -18,6 +18,7 @@ jobs:
         uses: hashicorp/packer-github-actions@master
         with:
           command: fix
+          target: packer/consul/consul-ami.pkr.hcl
 
       # validate templates
       - name: Validate Template
@@ -25,7 +26,7 @@ jobs:
         with:
           command: validate
           arguments: -syntax-only
-          target: packer.pkr.hcl
+          target: packer/consul/consul-ami.pkr.hcl
 
       # build artifact
       - name: Build Artifact
@@ -33,6 +34,6 @@ jobs:
         with:
           command: build
           arguments: "-color=false -on-error=abort"
-          target: packer.pkr.hcl
+          target: packer/consul/consul-ami.pkr.hcl
         env:
           PACKER_LOG: 1
