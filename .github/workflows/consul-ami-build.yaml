@@ -1,9 +1,7 @@
 name: Hashistack AMI's using Packer
 
-on:
-  push:
-    branches:
-      - 'master'
+on: [push, pull_request]
+
 jobs:
   consul-ami-build:
     runs-on: ubuntu-latest
