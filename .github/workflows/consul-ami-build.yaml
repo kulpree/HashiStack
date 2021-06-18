@@ -28,3 +28,5 @@ jobs:
           packerVersion: '1.7.3'
           packerArgs: 'build consul-ami.pkr.hcl'
           workDir: 'packer/consul'
+        run: echo "::set-output name=amazon-ebs.amzn2-amd64::$(grep us-east-1:)" 
+      
