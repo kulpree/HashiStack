@@ -21,10 +21,7 @@
 
 variable "architecture" {
   type = string
-  validation {
-    condition = var.architecture == "x86_64" || var.architecture == "arm64"
-    error_message = "Valid architectures are \"x86_64\" and \"arm64\"."
-  }
+  default     = null
 }
 
 variable "ami_id" {
