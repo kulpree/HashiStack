@@ -64,7 +64,7 @@ variable "consul_domain_name" {
 
 variable "lb_port" {
   description = "The port the load balancer should listen on for API requests."
-  default     = 80
+  default     = 443
 }
 
 variable "consul_api_port" {
@@ -99,7 +99,7 @@ variable "connection_draining_timeout" {
 
 variable "health_check_protocol" {
   description = "The protocol to use for health checks. Must be one of: HTTP, HTTPS, TCP, SSL."
-  default     = "HTTPS"
+  default     = "TCP"
 }
 
 variable "health_check_path" {

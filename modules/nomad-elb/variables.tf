@@ -98,7 +98,7 @@ variable "connection_draining_timeout" {
 
 variable "health_check_protocol" {
   description = "The protocol to use for health checks. Must be one of: HTTP, HTTPS, TCP, SSL."
-  default     = "HTTPS"
+  default     = "TCP"
 }
 
 variable "health_check_path" {
