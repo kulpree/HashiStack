@@ -21,7 +21,7 @@
 
 variable "architecture" {
   type = string
-  default     = null
+  default     = "x86_64"
 }
 
 variable "ami_id" {
@@ -51,7 +51,7 @@ variable "num_nomad_servers" {
 variable "num_nomad_clients" {
   description = "The number of Nomad client nodes to deploy. You can deploy as many as you need to run your jobs."
   type        = number
-  default     = 6
+  default     = 3
 }
 
 variable "num_consul_servers" {
